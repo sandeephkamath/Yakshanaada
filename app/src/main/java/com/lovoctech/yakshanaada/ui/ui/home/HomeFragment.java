@@ -16,7 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
-import com.lovoctech.yakshanaada.PerfectLoopMediaPlayer;
+import com.lovoctech.yakshanaada.LoopMediaPlayer;
 import com.lovoctech.yakshanaada.R;
 import com.lovoctech.yakshanaada.RxBus;
 import com.lovoctech.yakshanaada.YakshaNaadaApplication;
@@ -63,7 +63,7 @@ public class HomeFragment extends Fragment {
     }
 
     private RxBus rxBus;
-    private PerfectLoopMediaPlayer player;
+    private LoopMediaPlayer player;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -130,7 +130,7 @@ public class HomeFragment extends Fragment {
         if (player != null) {
             player.release();
         }
-        player = PerfectLoopMediaPlayer.create(getContext(), shruthi.getUri());
+        player = LoopMediaPlayer.create(getContext(), shruthi.getUri());
         shruthiTitle.setText(shruthi.getTitle());
         playerEvent(new Event(shruthi, Event.PLAYING));
     }
