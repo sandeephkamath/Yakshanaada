@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "904212561375",
+    "firebase_url": "https://yakshanaada.firebaseio.com",
+    "project_id": "yakshanaada",
+    "storage_bucket": "yakshanaada.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:904212561375:android:4e1b4fa72cf04913e3d86a",
+        "android_client_info": {
+          "package_name": "com.lovoctech.yakshanaada"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "904212561375-fb2oq9cqvg0pt2s2s42k3n6bdac17tl0.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.lovoctech.yakshanaada",
+            "certificate_hash": "a8e6e622ba3a4c8a63be1425a0207ab312ab6335"
+          }
+        },
+        {
+          "client_id": "904212561375-o946cd3qfn86f1rlhtclk4h93t7bv6ua.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDa50e73ICQBEDiPu-Xl5ctMvUudQ9Ftw0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "904212561375-o946cd3qfn86f1rlhtclk4h93t7bv6ua.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,32 @@
+<resources>
+    <string name="app_name">YakshaNaada - ಯಕ್ಷನಾದ</string>
+    <string name="playback_channel_name">ಯಕ್ಷನಾದ</string>
+
+    <string name="bili_2">ಬಿಳಿ ೨</string>
+    <string name="kappu_2">ಕಪ್ಪು ೨</string>
+    <string name="bili_3">ಬಿಳಿ ೩</string>
+    <string name="bili_4">ಬಿಳಿ ೪</string>
+    <string name="bili_5">ಬಿಳಿ ೫</string>
+
+    <string name="admob_app_id">"ca-app-pub-4879890824365927~4846271458"</string>
+
+    <string name="banner_id_prod">ca-app-pub-4879890824365927/4271556385</string>
+    <string name="banner_id_test">ca-app-pub-3940256099942544/6300978111</string>
+    <string name="banner_list_activity">ca-app-pub-4879890824365927/4177983192</string>
+    <string name="title_activity_drawer">DrawerActivity</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">lovoctech@gmail.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="menu_home">Home</string>
+    <string name="menu_gallery">Gallery</string>
+    <string name="menu_slideshow">Slideshow</string>
+    <string name="menu_tools">Tools</string>
+    <string name="menu_share">Share</string>
+    <string name="menu_send">Send</string>
+    <string name="rate">Rate</string>
+    <string name="feedback">Feedback</string>
+</resources>
