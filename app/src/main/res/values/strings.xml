@@ -29,4 +29,8 @@
     <string name="menu_send">Send</string>
     <string name="rate">Rate</string>
     <string name="feedback">Feedback</string>
+    <string name="ma">Ma</string>
+    <string name="pa">Pa</string>
+    <string name="hindusthani">Hindusthani</string>
+    <string name="yakshashruthi">Yakshashruthi</string>
 </resources>

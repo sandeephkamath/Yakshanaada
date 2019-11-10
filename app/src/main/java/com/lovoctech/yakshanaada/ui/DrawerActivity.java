@@ -4,9 +4,7 @@ import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.view.MenuItem;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
@@ -18,6 +16,8 @@ import androidx.navigation.ui.NavigationUI;
 
 import com.google.android.material.navigation.NavigationView;
 import com.lovoctech.yakshanaada.R;
+import com.lovoctech.yakshanaada.ui.ui.gallery.HindusthaniFragment;
+import com.lovoctech.yakshanaada.ui.ui.home.HomeFragment;
 
 public class DrawerActivity extends AppCompatActivity {
 
@@ -51,13 +51,29 @@ public class DrawerActivity extends AppCompatActivity {
                 rateApp();
             } else if (menuItem.getItemId() == R.id.feedback) {
                 openMailer();
+            } else if (menuItem.getItemId() == R.id.hindusthani) {
+                openHindusthani();
+            } else if (menuItem.getItemId() == R.id.yakshashruthi) {
+                openYakshaShruthi();
             }
             drawer.closeDrawer(GravityCompat.START);
             return true;
         });
 
+        navigationView.getMenu().getItem(0).setChecked(true);
+
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
 //        NavigationUI.setupWithNavController(navigationView, navController);
+    }
+
+    private void openYakshaShruthi() {
+        getSupportFragmentManager().beginTransaction()
+                .add(R.id.nav_host_fragment, new HomeFragment()).commit();
+    }
+
+    private void openHindusthani() {
+        getSupportFragmentManager().beginTransaction()
+                .add(R.id.nav_host_fragment, new HindusthaniFragment()).commit();
     }
 
     private void openMailer() {
