@@ -16,7 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
-import com.lovoctech.yakshanaada.LoopMediaPlayer;
+import com.lovoctech.yakshanaada.PlayerManager;
 import com.lovoctech.yakshanaada.R;
 import com.lovoctech.yakshanaada.RxBus;
 import com.lovoctech.yakshanaada.YakshaNaadaApplication;
@@ -51,19 +51,18 @@ public class HomeFragment extends Fragment {
 
     @OnClick(R.id.play_pause)
     void onPlayPause() {
-        if (player != null) {
-            if (player.isPlaying()) {
-                playerEvent(new Event(null, Event.PAUSED));
-                player.pause();
-            } else {
-                playerEvent(new Event(null, Event.PLAYING));
-                player.start();
-            }
+        if (playerManager.isPlaying()) {
+            playerEvent(new Event(null, Event.PAUSED));
+            playerManager.pause();
+        } else {
+            playerEvent(new Event(null, Event.PLAYING));
+            playerManager.resume();
         }
+
     }
 
     private RxBus rxBus;
-    private LoopMediaPlayer player;
+    private PlayerManager playerManager;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -88,6 +87,10 @@ public class HomeFragment extends Fragment {
                         playShruthi((Shruthi) object);
                     }
                 });
+
+        playerManager = PlayerManager.getInstance();
+        playerManager.init(getContext(), rxBus);
+
 
         return root;
     }
@@ -127,11 +130,11 @@ public class HomeFragment extends Fragment {
     }
 
     private void playShruthi(Shruthi shruthi) {
-        if (player != null) {
-            player.release();
-        }
-        player = LoopMediaPlayer.create(getContext(), shruthi.getUri());
+        playerManager.release();
+        playerManager.setShruthi(shruthi);
         shruthiTitle.setText(shruthi.getTitle());
         playerEvent(new Event(shruthi, Event.PLAYING));
     }
+
+
 }
