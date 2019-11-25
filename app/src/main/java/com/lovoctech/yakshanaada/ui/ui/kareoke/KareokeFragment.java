@@ -11,6 +11,9 @@ import android.widget.Spinner;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import butterknife.BindView;
+
+import com.lovoctech.yakshanaada.KareokePlayer;
+
 import butterknife.ButterKnife;
 
 import com.lovoctech.yakshanaada.PlayerManager;
@@ -23,17 +26,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class KareokeFragment extends Fragment{
+public class KareokeFragment extends Fragment {
 
     private Spinner taalaSpinner;
-    private PlayerManager playerManager;
+    private KareokePlayer playerManager;
     private RxBus rxBus;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
         View root = inflater.inflate(R.layout.fragment_kareoke, container, false);
-        ButterKnife.bind(this,root);
+        ButterKnife.bind(this, root);
         addTaalas(root);
         rxBus = ((YakshaNaadaApplication) getActivity().getApplication()).bus();
 
@@ -44,44 +47,39 @@ public class KareokeFragment extends Fragment{
                     }
                 });
 
-        playerManager = PlayerManager.getInstance();
+        playerManager = KareokePlayer.getInstance();
         playerManager.init(getContext(), rxBus);
 
 
         Button button = (Button) root.findViewById(R.id.buttonNade);
-        button.setOnClickListener(new android.view.View.OnClickListener()
-        {
+        button.setOnClickListener(new android.view.View.OnClickListener() {
             @Override
-            public void onClick(View v)
-            {
-                playerManager.release();
-                playerManager.setShruthiForKareoke(new Shruthi(
+            public void onClick(View v) {
+                //playerManager.release();
+                Shruthi shruthi = new Shruthi(
                         R.raw.ds,
                         "DS",
                         "ಕಪ್ಪು 2",
                         "D#",
                         R.mipmap.yakshanaada
-                ));
-                playerManager.playMedia(R.raw.twaritha_trivude_nade);
+                );
+                playerManager.playNade(shruthi, R.raw.twaritha_trivude_nade, 1.0f);
 
             }
         });
 
         Button buttonBidthige = (Button) root.findViewById(R.id.buttonBidthige);
-        buttonBidthige.setOnClickListener(new android.view.View.OnClickListener()
-        {
+        buttonBidthige.setOnClickListener(new android.view.View.OnClickListener() {
             @Override
-            public void onClick(View v)
-            {
-                playerManager.release();
-                playerManager.setShruthiForKareoke(new Shruthi(
+            public void onClick(View v) {
+                Shruthi shruthi = new Shruthi(
                         R.raw.ds,
                         "DS",
                         "ಕಪ್ಪು 2",
                         "D#",
                         R.mipmap.yakshanaada
-                ));
-                playerManager.playBidthige(R.raw.twaritha_trivude_bidthige);
+                );
+                playerManager.playBidthige(R.raw.twaritha_trivude_bidthige, R.raw.twaritha_trivude_nade, 1.0f);
             }
         });
 
@@ -94,14 +92,14 @@ public class KareokeFragment extends Fragment{
         taals.add("Twaritha Trivude");
         taals.add("Nidhaana Trivude");
         taalaSpinner = (Spinner) view.findViewById(R.id.spinner);
-        ArrayAdapter<String> dataAdapter =new ArrayAdapter<String>(getContext(), R.layout.spinner_layout, taals);
+        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(getContext(), R.layout.spinner_layout, taals);
         taalaSpinner.setAdapter(dataAdapter);
         taalaSpinner.setEnabled(true);
     }
 
     private void playShruthi(Shruthi shruthi) {
-        playerManager.release();
-        playerManager.setShruthi(shruthi);
-     }
+        //playerManager.release();
+        //playerManager.setShruthi(shruthi);
+    }
 
 }
