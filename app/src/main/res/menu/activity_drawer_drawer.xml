@@ -8,6 +8,12 @@
         <item
             android:id="@+id/yakshashruthi"
             android:title="@string/yakshashruthi" />
+        <item
+            android:id="@+id/hindusthani"
+            android:title="@string/hindusthani" />
+        <item
+            android:id="@+id/kareoke"
+            android:title="@string/kareoke" />
 
         <item
             android:id="@+id/rate"
@@ -16,9 +22,7 @@
         <item
             android:id="@+id/feedback"
             android:title="@string/feedback" />
-        <item
-            android:id="@+id/hindusthani"
-            android:title="@string/hindusthani" />
+
     </group>
 
 

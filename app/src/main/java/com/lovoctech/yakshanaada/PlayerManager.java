@@ -9,6 +9,7 @@ import androidx.annotation.Nullable;
 
 import com.google.android.exoplayer2.ExoPlayer;
 import com.google.android.exoplayer2.ExoPlayerFactory;
+import com.google.android.exoplayer2.PlaybackParameters;
 import com.google.android.exoplayer2.Player;
 import com.google.android.exoplayer2.SimpleExoPlayer;
 import com.google.android.exoplayer2.ext.mediasession.MediaSessionConnector;
@@ -25,7 +26,7 @@ import com.lovoctech.yakshanaada.model.Shruthi;
 
 import static com.lovoctech.yakshanaada.service.AudioService.MEDIA_SESSION_TAG;
 
-public class PlayerManager {
+public class PlayerManager implements Player.EventListener{
     private SimpleExoPlayer currentPlayer;
     private SimpleExoPlayer nextPlayer;
     private RxBus rxBus;
@@ -58,6 +59,9 @@ public class PlayerManager {
 
     public void setShruthi(Shruthi shruthi) {
         exo(shruthi);
+    }
+    public void setShruthiForKareoke(Shruthi shruthi) {
+        playShruthi(shruthi);
     }
 
     private void exo(Shruthi shruthi) {
@@ -99,6 +103,119 @@ public class PlayerManager {
                 nextPlayer.setPlayWhenReady(true);
             }
         }, 1000);
+    }
+
+    public void playMedia(int uri) {
+        unsetHandler();
+        currentPlayer = ExoPlayerFactory.newSimpleInstance(context, new DefaultTrackSelector());
+        mediaSession = new MediaSessionCompat(context, MEDIA_SESSION_TAG);
+        mediaSession.setActive(true);
+        mediaSessionConnector = new MediaSessionConnector(mediaSession);
+        mediaSessionConnector.setQueueNavigator(new TimelineQueueNavigator(mediaSession) {
+            @Override
+            public MediaDescriptionCompat getMediaDescription(Player player, int windowIndex) {
+                return new MediaDescriptionCompat.Builder().build();
+            }
+        });
+        currentPlayer.setVolume(1.0f);
+        mediaSessionConnector.setPlayer(currentPlayer, null);
+
+
+        DataSource.Factory dataSourceFactory = new DefaultDataSourceFactory(context, Util.getUserAgent(context, context.getString(R.string.app_name)));
+        MediaSource source = new ExtractorMediaSource.Factory(dataSourceFactory).createMediaSource(RawResourceDataSource.buildRawResourceUri(uri));
+        PlaybackParameters p=new PlaybackParameters(1.4f);
+        currentPlayer.setPlaybackParameters(p);
+        currentPlayer.prepare(new LoopingMediaSource(source));
+        currentPlayer.setPlayWhenReady(true);
+
+    }
+
+    private void playShruthi(Shruthi shruthi) {
+        this.shruthi = shruthi;
+        unsetHandler();
+        currentPlayer = ExoPlayerFactory.newSimpleInstance(context, new DefaultTrackSelector());
+        nextPlayer = ExoPlayerFactory.newSimpleInstance(context, new DefaultTrackSelector());
+        mediaSession = new MediaSessionCompat(context, MEDIA_SESSION_TAG);
+        mediaSession.setActive(true);
+        mediaSessionConnector = new MediaSessionConnector(mediaSession);
+        mediaSessionConnector.setQueueNavigator(new TimelineQueueNavigator(mediaSession) {
+            @Override
+            public MediaDescriptionCompat getMediaDescription(Player player, int windowIndex) {
+                return new MediaDescriptionCompat.Builder().build();
+            }
+        });
+        mediaSessionConnector.setPlayer(currentPlayer, null);
+
+
+        DataSource.Factory dataSourceFactory = new DefaultDataSourceFactory(context, Util.getUserAgent(context, context.getString(R.string.app_name)));
+        MediaSource source = new ExtractorMediaSource.Factory(dataSourceFactory).createMediaSource(RawResourceDataSource.buildRawResourceUri(shruthi.getUri()));
+        MediaSource nextSource = new ExtractorMediaSource.Factory(dataSourceFactory).createMediaSource(RawResourceDataSource.buildRawResourceUri(shruthi.getUri()));
+
+        currentPlayer.setVolume(0.05f);
+        currentPlayer.prepare(new LoopingMediaSource(source));
+        currentPlayer.setPlayWhenReady(true);
+
+        startNextShruthi(nextSource);
+
+
+    }
+
+    private void startNextShruthi(MediaSource nextSource) {
+        handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                nextPlayer.prepare(new LoopingMediaSource(nextSource));
+                nextPlayer.setVolume(0.05f);
+                nextPlayer.setPlayWhenReady(true);
+            }
+        }, 1000);
+    }
+
+    public void playBidthige(int uri) {
+        unsetHandler();
+        currentPlayer = ExoPlayerFactory.newSimpleInstance(context, new DefaultTrackSelector());
+        mediaSession = new MediaSessionCompat(context, MEDIA_SESSION_TAG);
+        mediaSession.setActive(true);
+        mediaSessionConnector = new MediaSessionConnector(mediaSession);
+        mediaSessionConnector.setQueueNavigator(new TimelineQueueNavigator(mediaSession) {
+            @Override
+            public MediaDescriptionCompat getMediaDescription(Player player, int windowIndex) {
+                return new MediaDescriptionCompat.Builder().build();
+            }
+        });
+        currentPlayer.setVolume(1.0f);
+        mediaSessionConnector.setPlayer(currentPlayer, null);
+
+
+        DataSource.Factory dataSourceFactory = new DefaultDataSourceFactory(context, Util.getUserAgent(context, context.getString(R.string.app_name)));
+        MediaSource source = new ExtractorMediaSource.Factory(dataSourceFactory).createMediaSource(RawResourceDataSource.buildRawResourceUri(uri));
+        PlaybackParameters p=new PlaybackParameters(1.4f);
+        currentPlayer.setPlaybackParameters(p);
+        currentPlayer.prepare(source);
+        currentPlayer.setPlayWhenReady(true);
+
+        currentPlayer.addListener( new Player.EventListener() {
+
+            @Override
+            public void onPlayerStateChanged(boolean playWhenReady, int playbackState) {
+
+                switch(playbackState) {
+                    case Player.STATE_BUFFERING:
+                        break;
+                    case Player.STATE_ENDED:
+                        playMedia(R.raw.twaritha_trivude_nade);
+                        break;
+                    case Player.STATE_IDLE:
+                        break;
+                    case Player.STATE_READY:
+                        break;
+                    default:
+                        break;
+                }
+            }
+
+        });
     }
 
     private void unsetHandler() {
