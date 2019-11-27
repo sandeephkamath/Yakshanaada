@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Spinner;
 
 import androidx.annotation.NonNull;
@@ -31,6 +32,10 @@ public class KareokeFragment extends Fragment {
     private Spinner taalaSpinner;
     private KareokePlayer playerManager;
     private RxBus rxBus;
+
+    @BindView(R.id.editText)
+    EditText editText;
+
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -63,7 +68,7 @@ public class KareokeFragment extends Fragment {
                         "D#",
                         R.mipmap.yakshanaada
                 );
-                playerManager.playNade(shruthi, R.raw.twaritha_trivude_nade, 1.0f);
+                playerManager.playNade(shruthi, R.raw.twaritha_trivude_nade, Float.parseFloat(editText.getText().toString()));
 
             }
         });
@@ -79,7 +84,7 @@ public class KareokeFragment extends Fragment {
                         "D#",
                         R.mipmap.yakshanaada
                 );
-                playerManager.playBidthige(R.raw.twaritha_trivude_bidthige, R.raw.twaritha_trivude_nade, 1.0f);
+                playerManager.playBidthige(R.raw.twaritha_trivude_bidthige, R.raw.twaritha_trivude_nade,Float.parseFloat(editText.getText().toString()));
             }
         });
 

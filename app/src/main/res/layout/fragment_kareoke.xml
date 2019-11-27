@@ -12,13 +12,15 @@
         android:layout_marginTop="50dp"/>
 
     <EditText
-        android:id="@+id/editText2"
+        android:id="@+id/editText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
+        android:layout_marginTop="250dp"
+        android:inputType="numberDecimal"
         android:textColor="@color/white"
-        android:layout_marginTop="150dp"
-        android:inputType="number" />
+        android:textColorHighlight="@color/white"/>
+
 
     <Button
         android:id="@+id/buttonNade"
@@ -34,8 +36,6 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="450dp"
         android:text="Bidthige"/>
-
-
 
 
 

@@ -38,14 +38,12 @@ public class KareokePlayer implements Player.EventListener {
     private MediaSessionConnector mediaSessionConnector;
     private Handler handler;
 
-
     public static KareokePlayer getInstance() {
         if (INSTANCE == null) {
             INSTANCE = new KareokePlayer();
         }
         return INSTANCE;
     }
-
 
     public void init(Context context, RxBus rxBus) {
         this.rxBus = rxBus;
