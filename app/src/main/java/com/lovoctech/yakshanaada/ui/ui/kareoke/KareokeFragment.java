@@ -20,6 +20,7 @@ import com.lovoctech.yakshanaada.R;
 import com.lovoctech.yakshanaada.RxBus;
 import com.lovoctech.yakshanaada.YakshaNaadaApplication;
 import com.lovoctech.yakshanaada.model.Shruthi;
+import com.rm.rmswitch.RMTristateSwitch;
 import com.warkiz.tickseekbar.OnSeekChangeListener;
 import com.warkiz.tickseekbar.SeekParams;
 import com.warkiz.tickseekbar.TickSeekBar;
@@ -51,6 +52,9 @@ public class KareokeFragment extends Fragment {
     @BindView(R.id.tempo_seekbar)
     TickSeekBar tempoSeekBar;
 
+    @BindView(R.id.kareoke_switch)
+    RMTristateSwitch rmSwitch;
+
 
     @OnClick(R.id.buttonNade)
     void nadeClick() {
@@ -66,13 +70,6 @@ public class KareokeFragment extends Fragment {
 
     @OnClick(R.id.buttonBidthige)
     void bidthigeClick() {
-        Shruthi shruthi = new Shruthi(
-                R.raw.ds,
-                "DS",
-                "ಕಪ್ಪು 2",
-                "D#",
-                R.mipmap.yakshanaada
-        );
         playerManager.playBidthige(R.raw.twaritha_trivude_bidthige, R.raw.twaritha_trivude_nade, Float.parseFloat(editText.getText().toString()));
     }
 

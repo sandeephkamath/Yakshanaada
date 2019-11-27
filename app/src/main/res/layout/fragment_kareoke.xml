@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/bg">
+    android:background="@color/bg"
+    android:clickable="true">
 
     <Spinner
         android:id="@+id/spinner"
@@ -24,6 +25,24 @@
         app:tsb_show_tick_marks_type="oval"
         app:tsb_show_tick_texts="above"
         app:tsb_ticks_count="5" />
+
+    <com.rm.rmswitch.RMTristateSwitch
+        android:id="@+id/kareoke_switch"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tempo_seekbar"
+        android:layout_centerHorizontal="true"
+        android:rotation="90"
+        app:enabled="true"
+        app:state="left"
+        app:switchDesign="large"
+        app:switchToggleLeftColor="@android:color/transparent"
+        app:switchToggleLeftImage="@drawable/jagate"
+        app:switchToggleMiddleColor="@android:color/transparent"
+        app:switchToggleMiddleImage="@drawable/jagate"
+        app:switchToggleRightColor="@android:color/transparent"
+        app:switchToggleRightImage="@drawable/jagate" />
+
 
     <EditText
         android:id="@+id/editText"
