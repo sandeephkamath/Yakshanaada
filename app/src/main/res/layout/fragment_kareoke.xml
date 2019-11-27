@@ -20,11 +20,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/spinner"
-        app:tsb_max="5"
+        android:rotation="90"
+        app:tsb_max="3"
         app:tsb_min="1"
-        app:tsb_show_tick_marks_type="oval"
-        app:tsb_show_tick_texts="above"
-        app:tsb_ticks_count="5" />
+        app:tsb_show_tick_marks_type="custom"
+        app:tsb_show_tick_texts="none"
+        app:tsb_thumb_adjust_auto="true"
+        app:tsb_thumb_drawable="@drawable/jagate"
+        app:tsb_thumb_size="800dp"
+        app:tsb_ticks_count="3" />
 
     <com.rm.rmswitch.RMTristateSwitch
         android:id="@+id/kareoke_switch"
@@ -33,6 +37,7 @@
         android:layout_below="@+id/tempo_seekbar"
         android:layout_centerHorizontal="true"
         android:rotation="90"
+        android:visibility="gone"
         app:enabled="true"
         app:state="left"
         app:switchDesign="large"
