@@ -3,7 +3,7 @@
     android:id="@+id/spinnerTarget"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
-    android:textSize="16pt"
-    android:textColor="#FFFFFF"
-    android:background="#000000"
-    android:gravity="center"/>
+    android:background="@color/bg"
+    android:gravity="center"
+    android:textColor="@color/white"
+    android:textSize="16pt" />

@@ -1,25 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#212121">
+    android:background="@color/bg">
+
     <Spinner
         android:id="@+id/spinner"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
-        android:layout_marginTop="50dp"/>
+        android:layout_marginTop="50dp"
+        android:spinnerMode="dialog" />
 
     <EditText
         android:id="@+id/editText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:ems="10"
         android:layout_marginTop="250dp"
+        android:ems="10"
         android:inputType="numberDecimal"
         android:textColor="@color/white"
-        android:textColorHighlight="@color/white"/>
+        android:textColorHighlight="@color/white" />
 
 
     <Button
@@ -27,7 +29,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="350dp"
-        android:text="Nade"/>
+        android:text="@string/nade" />
 
 
     <Button
@@ -35,8 +37,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="450dp"
-        android:text="Bidthige"/>
-
+        android:text="@string/bidthige" />
 
 
 </RelativeLayout>
