@@ -30,23 +30,15 @@
         app:tsb_thumb_size="800dp"
         app:tsb_ticks_count="3" />
 
-    <com.rm.rmswitch.RMTristateSwitch
-        android:id="@+id/kareoke_switch"
-        android:layout_width="250dp"
+    <SeekBar
+        android:id="@+id/kk"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/tempo_seekbar"
-        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/spinner"
+        android:layout_centerInParent="true"
+        android:max="3"
         android:rotation="90"
-        android:visibility="gone"
-        app:enabled="true"
-        app:state="left"
-        app:switchDesign="large"
-        app:switchToggleLeftColor="@android:color/transparent"
-        app:switchToggleLeftImage="@drawable/jagate"
-        app:switchToggleMiddleColor="@android:color/transparent"
-        app:switchToggleMiddleImage="@drawable/jagate"
-        app:switchToggleRightColor="@android:color/transparent"
-        app:switchToggleRightImage="@drawable/jagate" />
+        android:thumb="@mipmap/yakshanaada_round" />
 
 
     <EditText

@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.SeekBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -20,7 +21,6 @@ import com.lovoctech.yakshanaada.R;
 import com.lovoctech.yakshanaada.RxBus;
 import com.lovoctech.yakshanaada.YakshaNaadaApplication;
 import com.lovoctech.yakshanaada.model.Shruthi;
-import com.rm.rmswitch.RMTristateSwitch;
 import com.warkiz.tickseekbar.OnSeekChangeListener;
 import com.warkiz.tickseekbar.SeekParams;
 import com.warkiz.tickseekbar.TickSeekBar;
@@ -52,8 +52,8 @@ public class KareokeFragment extends Fragment {
     @BindView(R.id.tempo_seekbar)
     TickSeekBar tempoSeekBar;
 
-    @BindView(R.id.kareoke_switch)
-    RMTristateSwitch rmSwitch;
+    @BindView(R.id.kk)
+    SeekBar seekBar;
 
 
     @OnClick(R.id.buttonNade)
@@ -103,6 +103,8 @@ public class KareokeFragment extends Fragment {
 
             }
         });
+
+        seekBar.incrementProgressBy(1);
 
         playerManager = KareokePlayer.getInstance();
         playerManager.init(getContext(), rxBus);
