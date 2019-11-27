@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/bg">
@@ -12,6 +13,17 @@
         android:layout_alignParentLeft="true"
         android:layout_marginTop="50dp"
         android:spinnerMode="dialog" />
+
+    <com.warkiz.tickseekbar.TickSeekBar
+        android:id="@+id/tempo_seekbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/spinner"
+        app:tsb_max="5"
+        app:tsb_min="1"
+        app:tsb_show_tick_marks_type="oval"
+        app:tsb_show_tick_texts="above"
+        app:tsb_ticks_count="5" />
 
     <EditText
         android:id="@+id/editText"

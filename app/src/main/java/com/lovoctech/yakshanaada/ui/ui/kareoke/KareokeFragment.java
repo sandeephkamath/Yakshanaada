@@ -20,6 +20,9 @@ import com.lovoctech.yakshanaada.R;
 import com.lovoctech.yakshanaada.RxBus;
 import com.lovoctech.yakshanaada.YakshaNaadaApplication;
 import com.lovoctech.yakshanaada.model.Shruthi;
+import com.warkiz.tickseekbar.OnSeekChangeListener;
+import com.warkiz.tickseekbar.SeekParams;
+import com.warkiz.tickseekbar.TickSeekBar;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -44,6 +47,10 @@ public class KareokeFragment extends Fragment {
 
     @BindView(R.id.spinner)
     Spinner taalaSpinner;
+
+    @BindView(R.id.tempo_seekbar)
+    TickSeekBar tempoSeekBar;
+
 
     @OnClick(R.id.buttonNade)
     void nadeClick() {
@@ -82,6 +89,23 @@ public class KareokeFragment extends Fragment {
         ButterKnife.bind(this, root);
         addTaalas();
         RxBus rxBus = ((YakshaNaadaApplication) Objects.requireNonNull(getActivity()).getApplication()).bus();
+
+        tempoSeekBar.setOnSeekChangeListener(new OnSeekChangeListener() {
+            @Override
+            public void onSeeking(SeekParams seekParams) {
+
+            }
+
+            @Override
+            public void onStartTrackingTouch(TickSeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(TickSeekBar seekBar) {
+
+            }
+        });
 
         playerManager = KareokePlayer.getInstance();
         playerManager.init(getContext(), rxBus);
