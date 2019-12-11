@@ -39,5 +39,16 @@
         android:layout_marginTop="450dp"
         android:text="@string/bidthige" />
 
+    <Switch
+        android:id="@+id/switch1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Switch"
+        android:layout_marginTop="550dp"
+        android:textColorHighlight="@color/white"
+        android:textColor="@color/white"
+        android:shadowColor="@color/white"
+        android:scrollbarSize="200dp"/>
+
 
 </RelativeLayout>
