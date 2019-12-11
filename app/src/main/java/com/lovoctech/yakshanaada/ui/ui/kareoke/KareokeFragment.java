@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.SeekBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -20,6 +21,9 @@ import com.lovoctech.yakshanaada.R;
 import com.lovoctech.yakshanaada.RxBus;
 import com.lovoctech.yakshanaada.YakshaNaadaApplication;
 import com.lovoctech.yakshanaada.model.Shruthi;
+import com.warkiz.tickseekbar.OnSeekChangeListener;
+import com.warkiz.tickseekbar.SeekParams;
+import com.warkiz.tickseekbar.TickSeekBar;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -45,6 +49,13 @@ public class KareokeFragment extends Fragment {
     @BindView(R.id.spinner)
     Spinner taalaSpinner;
 
+    @BindView(R.id.tempo_seekbar)
+    TickSeekBar tempoSeekBar;
+
+    @BindView(R.id.kk)
+    SeekBar seekBar;
+
+
     @OnClick(R.id.buttonNade)
     void nadeClick() {
         Shruthi shruthi = new Shruthi(
@@ -59,13 +70,6 @@ public class KareokeFragment extends Fragment {
 
     @OnClick(R.id.buttonBidthige)
     void bidthigeClick() {
-        Shruthi shruthi = new Shruthi(
-                R.raw.ds,
-                "DS",
-                "ಕಪ್ಪು 2",
-                "D#",
-                R.mipmap.yakshanaada
-        );
         playerManager.playBidthige(R.raw.twaritha_trivude_bidthige, R.raw.twaritha_trivude_nade, Float.parseFloat(editText.getText().toString()));
     }
 
@@ -82,6 +86,25 @@ public class KareokeFragment extends Fragment {
         ButterKnife.bind(this, root);
         addTaalas();
         RxBus rxBus = ((YakshaNaadaApplication) Objects.requireNonNull(getActivity()).getApplication()).bus();
+
+        tempoSeekBar.setOnSeekChangeListener(new OnSeekChangeListener() {
+            @Override
+            public void onSeeking(SeekParams seekParams) {
+
+            }
+
+            @Override
+            public void onStartTrackingTouch(TickSeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(TickSeekBar seekBar) {
+
+            }
+        });
+
+        seekBar.incrementProgressBy(1);
 
         playerManager = KareokePlayer.getInstance();
         playerManager.init(getContext(), rxBus);

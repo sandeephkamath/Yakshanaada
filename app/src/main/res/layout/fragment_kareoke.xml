@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/bg">
+    android:background="@color/bg"
+    android:clickable="true">
 
     <Spinner
         android:id="@+id/spinner"
@@ -12,6 +14,32 @@
         android:layout_alignParentLeft="true"
         android:layout_marginTop="50dp"
         android:spinnerMode="dialog" />
+
+    <com.warkiz.tickseekbar.TickSeekBar
+        android:id="@+id/tempo_seekbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/spinner"
+        android:rotation="90"
+        app:tsb_max="3"
+        app:tsb_min="1"
+        app:tsb_show_tick_marks_type="custom"
+        app:tsb_show_tick_texts="none"
+        app:tsb_thumb_adjust_auto="true"
+        app:tsb_thumb_drawable="@drawable/jagate"
+        app:tsb_thumb_size="800dp"
+        app:tsb_ticks_count="3" />
+
+    <SeekBar
+        android:id="@+id/kk"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/spinner"
+        android:layout_centerInParent="true"
+        android:max="3"
+        android:rotation="90"
+        android:thumb="@mipmap/yakshanaada_round" />
+
 
     <EditText
         android:id="@+id/editText"
