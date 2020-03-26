@@ -18,6 +18,7 @@ import com.google.android.material.navigation.NavigationView;
 import com.lovoctech.yakshanaada.R;
 import com.lovoctech.yakshanaada.ui.ui.gallery.HindusthaniFragment;
 import com.lovoctech.yakshanaada.ui.ui.home.HomeFragment;
+import com.lovoctech.yakshanaada.ui.ui.kareoke.KareokeFragment;
 
 public class DrawerActivity extends AppCompatActivity {
 
@@ -56,6 +57,9 @@ public class DrawerActivity extends AppCompatActivity {
             } else if (menuItem.getItemId() == R.id.yakshashruthi) {
                 openYakshaShruthi();
             }
+//            else if(menuItem.getItemId() == R.id.kareoke){
+//                openKareoke();
+//            }
             drawer.closeDrawer(GravityCompat.START);
             return true;
         });

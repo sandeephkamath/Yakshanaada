@@ -8,18 +8,16 @@
         <item
             android:id="@+id/yakshashruthi"
             android:title="@string/yakshashruthi" />
+        <item
+            android:id="@+id/hindusthani"
+            android:title="Tanpura (ತಾನ್ಪುರ)" />
 
         <item
             android:id="@+id/rate"
-            android:title="@string/rate" />
+            android:title="Rate (ರೇಟ್ ಮಾಡಿ)" />
 
         <item
             android:id="@+id/feedback"
-            android:title="@string/feedback" />
-        <item
-            android:id="@+id/hindusthani"
-            android:title="@string/hindusthani" />
+            android:title="Feedback (ಸಲಹೆ)" />
     </group>
-
-
 </menu>
