@@ -5,6 +5,7 @@ import android.os.Handler;
 import android.support.v4.media.MediaDescriptionCompat;
 import android.support.v4.media.session.MediaSessionCompat;
 
+import com.google.android.exoplayer2.ExoPlayer;
 import com.google.android.exoplayer2.ExoPlayerFactory;
 import com.google.android.exoplayer2.PlaybackParameters;
 import com.google.android.exoplayer2.Player;
@@ -18,6 +19,7 @@ import com.google.android.exoplayer2.trackselection.DefaultTrackSelector;
 import com.google.android.exoplayer2.upstream.DataSource;
 import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory;
 import com.google.android.exoplayer2.upstream.RawResourceDataSource;
+import com.google.android.exoplayer2.util.ParsableNalUnitBitArray;
 import com.google.android.exoplayer2.util.Util;
 import com.lovoctech.yakshanaada.model.Shruthi;
 
@@ -43,6 +45,19 @@ public class KareokePlayer implements Player.EventListener {
             INSTANCE = new KareokePlayer();
         }
         return INSTANCE;
+    }
+
+    public void pause() {
+        pause(currentPlayer);
+        pause(nextPlayer);
+        pause(sourcePlayer);
+        //unsetHandler();
+    }
+
+    public void resume() {
+        resume(nextPlayer);
+        resume(currentPlayer);
+        resume(sourcePlayer);
     }
 
     public void init(Context context, RxBus rxBus) {
@@ -146,5 +161,15 @@ public class KareokePlayer implements Player.EventListener {
         });
     }
 
+    private void pause(ExoPlayer player) {
+        if (player != null) {
+            player.setPlayWhenReady(false);
+        }
+    }
 
+    private void resume(ExoPlayer player) {
+        if (player != null) {
+            player.setPlayWhenReady(true);
+        }
+    }
 }

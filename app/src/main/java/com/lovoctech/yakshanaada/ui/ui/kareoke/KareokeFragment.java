@@ -11,6 +11,7 @@ import android.widget.EditText;
 import android.widget.SeekBar;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -21,9 +22,6 @@ import com.lovoctech.yakshanaada.R;
 import com.lovoctech.yakshanaada.RxBus;
 import com.lovoctech.yakshanaada.YakshaNaadaApplication;
 import com.lovoctech.yakshanaada.model.Shruthi;
-import com.warkiz.tickseekbar.OnSeekChangeListener;
-import com.warkiz.tickseekbar.SeekParams;
-import com.warkiz.tickseekbar.TickSeekBar;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,9 +35,6 @@ import butterknife.OnItemSelected;
 
 public class KareokeFragment extends Fragment {
 
-    @BindView(R.id.editText)
-    EditText editText;
-
     @BindView(R.id.buttonNade)
     Button nadeButton;
 
@@ -49,28 +44,41 @@ public class KareokeFragment extends Fragment {
     @BindView(R.id.spinner)
     Spinner taalaSpinner;
 
-    @BindView(R.id.tempo_seekbar)
-    TickSeekBar tempoSeekBar;
-
     @BindView(R.id.kk)
     SeekBar seekBar;
+
+    @BindView(R.id.sb)
+    SeekBar tempoSeekBar;
+
+    @BindView(R.id.buttonStop)
+    Button buttonStop;
 
 
     @OnClick(R.id.buttonNade)
     void nadeClick() {
-        Shruthi shruthi = new Shruthi(
-                R.raw.ds,
-                "DS",
-                "ಕಪ್ಪು 2",
-                "D#",
-                R.mipmap.yakshanaada
-        );
-        playerManager.playNade(shruthi, R.raw.twaritha_trivude_nade, Float.parseFloat(editText.getText().toString()));
+        if(nadeButton.getText().equals("Start")){
+            Shruthi shruthi = new Shruthi(
+                    R.raw.ds,
+                    "DS",
+                    "ಕಪ್ಪು 2",
+                    "D#",
+                    R.mipmap.yakshanaada
+            );
+            float tempo =  1+ (float) tempoSeekBar.getProgress()/10;
+            playerManager.playNade(shruthi, R.raw.twaritha_trivude_nade, tempo);
+            nadeButton.setText("Pause");
+        } else if(nadeButton.getText().equals("Pause")) {
+            playerManager.pause();
+            nadeButton.setText("Resume");
+        } else if(nadeButton.getText().equals("Resume")) {
+            playerManager.resume();
+            nadeButton.setText("Pause");
+        }
     }
-
-    @OnClick(R.id.buttonBidthige)
-    void bidthigeClick() {
-        playerManager.playBidthige(R.raw.twaritha_trivude_bidthige, R.raw.twaritha_trivude_nade, Float.parseFloat(editText.getText().toString()));
+    @OnClick(R.id.buttonStop)
+    void stopClick(){
+        nadeButton.setText("Start");
+        playerManager.pause();
     }
 
     @OnItemSelected(R.id.spinner)
@@ -87,29 +95,39 @@ public class KareokeFragment extends Fragment {
         addTaalas();
         RxBus rxBus = ((YakshaNaadaApplication) Objects.requireNonNull(getActivity()).getApplication()).bus();
 
-        tempoSeekBar.setOnSeekChangeListener(new OnSeekChangeListener() {
-            @Override
-            public void onSeeking(SeekParams seekParams) {
-
-            }
-
-            @Override
-            public void onStartTrackingTouch(TickSeekBar seekBar) {
-
-            }
-
-            @Override
-            public void onStopTrackingTouch(TickSeekBar seekBar) {
-
-            }
-        });
 
         seekBar.incrementProgressBy(1);
 
+
         playerManager = KareokePlayer.getInstance();
         playerManager.init(getContext(), rxBus);
+
+        seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener()
+        {
+            int progressChangedValue = 0;
+
+            public void onProgressChanged (SeekBar seekBar,int progress, boolean fromUser){
+                progressChangedValue = progress;
+                if(progressChangedValue == 0) {
+                    float tempo =  1+ (float) tempoSeekBar.getProgress()/10;
+                    playerManager.playBidthige(R.raw.twaritha_trivude_bidthige, R.raw.twaritha_trivude_nade, tempo);
+                }else if(progressChangedValue == 2){
+
+                }
+            }
+
+            public void onStartTrackingTouch (SeekBar seekBar){
+
+            }
+
+            public void onStopTrackingTouch (SeekBar seekBar){
+
+            }
+        });
         return root;
     }
+
+
 
     private void addTaalas() {
         List<String> taals = new ArrayList<>();

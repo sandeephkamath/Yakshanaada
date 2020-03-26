@@ -10,20 +10,14 @@
             android:title="@string/yakshashruthi" />
         <item
             android:id="@+id/hindusthani"
-            android:title="@string/hindusthani" />
-        <item
-            android:id="@+id/kareoke"
-            android:title="@string/kareoke" />
+            android:title="Tanpura (ತಾನ್ಪುರ)" />
 
         <item
             android:id="@+id/rate"
-            android:title="@string/rate" />
+            android:title="Rate (ರೇಟ್ ಮಾಡಿ)" />
 
         <item
             android:id="@+id/feedback"
-            android:title="@string/feedback" />
-
+            android:title="Feedback (ಸಲಹೆ)" />
     </group>
-
-
 </menu>

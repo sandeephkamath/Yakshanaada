@@ -56,9 +56,10 @@ public class DrawerActivity extends AppCompatActivity {
                 openHindusthani();
             } else if (menuItem.getItemId() == R.id.yakshashruthi) {
                 openYakshaShruthi();
-            } else if(menuItem.getItemId() == R.id.kareoke){
-                openKareoke();
             }
+//            else if(menuItem.getItemId() == R.id.kareoke){
+//                openKareoke();
+//            }
             drawer.closeDrawer(GravityCompat.START);
             return true;
         });
@@ -77,11 +78,6 @@ public class DrawerActivity extends AppCompatActivity {
     private void openHindusthani() {
         getSupportFragmentManager().beginTransaction()
                 .add(R.id.nav_host_fragment, new HindusthaniFragment()).commit();
-    }
-
-    private void openKareoke(){
-        getSupportFragmentManager().beginTransaction()
-                .add(R.id.nav_host_fragment, new KareokeFragment()).commit();
     }
 
     private void openMailer() {

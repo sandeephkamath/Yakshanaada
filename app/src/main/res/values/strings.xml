@@ -17,7 +17,7 @@
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="nav_header_title">Android Studio</string>
-    <string name="nav_header_subtitle">lovoctech@gmail.com</string>
+    <string name="nav_header_subtitle">ಯಕ್ಷಧ್ರುವ ಪಟ್ಲಾಭಿಮಾನಿ</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
 
@@ -32,8 +32,7 @@
     <string name="ma">Ma</string>
     <string name="pa">Pa</string>
     <string name="hindusthani">Hindusthani</string>
-    <string name="yakshashruthi">Yakshashruthi</string>
-    <string name="kareoke">kareoke</string>
+    <string name="yakshashruthi">Yakshashruthi (ಯಕ್ಷ ಶ್ರತಿ)</string>
     <string name="nade">Nade</string>
     <string name="bidthige">Bidthige</string>
 </resources>
