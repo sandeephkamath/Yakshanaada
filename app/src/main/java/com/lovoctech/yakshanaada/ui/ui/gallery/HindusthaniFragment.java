@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CompoundButton;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -15,9 +16,6 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdView;
-import com.google.android.gms.ads.MobileAds;
 import com.lovoctech.yakshanaada.PlayerManager;
 import com.lovoctech.yakshanaada.R;
 import com.lovoctech.yakshanaada.RxBus;
@@ -50,7 +48,7 @@ public class HindusthaniFragment extends Fragment {
     RelativeLayout playerArea;
 
     @BindView(R.id.adView)
-    AdView adView;
+    FrameLayout adView;
 
     @BindView(R.id.pama)
     SwitchCompat pamaSwitch;
@@ -64,7 +62,6 @@ public class HindusthaniFragment extends Fragment {
             playerEvent(new Event(null, Event.PLAYING));
             playerManager.resume();
         }
-
     }
 
 
@@ -83,10 +80,6 @@ public class HindusthaniFragment extends Fragment {
         recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2));
         recyclerView.setAdapter(tanpurAdapter);
 
-        MobileAds.initialize(getContext(), getString(R.string.admob_app_id));
-
-        AdRequest adRequest = new AdRequest.Builder().build();
-        adView.loadAd(adRequest);
 
         rxBus.toObservable()
                 .subscribe(object -> {

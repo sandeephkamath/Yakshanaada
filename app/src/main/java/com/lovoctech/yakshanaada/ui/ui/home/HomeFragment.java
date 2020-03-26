@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -13,9 +14,11 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdView;
-import com.google.android.gms.ads.MobileAds;
+import com.ironsource.mediationsdk.ISBannerSize;
+import com.ironsource.mediationsdk.IronSource;
+import com.ironsource.mediationsdk.IronSourceBannerLayout;
+import com.ironsource.mediationsdk.logger.IronSourceError;
+import com.ironsource.mediationsdk.sdk.BannerListener;
 import com.lovoctech.yakshanaada.PlayerManager;
 import com.lovoctech.yakshanaada.R;
 import com.lovoctech.yakshanaada.RxBus;
@@ -26,6 +29,7 @@ import com.lovoctech.yakshanaada.repository.ShruthiRepository;
 import com.lovoctech.yakshanaada.ui.ShruthiAdapter;
 
 import java.util.List;
+import java.util.Objects;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -47,7 +51,8 @@ public class HomeFragment extends Fragment {
     RelativeLayout playerArea;
 
     @BindView(R.id.adView)
-    AdView adView;
+    FrameLayout adView;
+
 
     @OnClick(R.id.play_pause)
     void onPlayPause() {
@@ -75,11 +80,47 @@ public class HomeFragment extends Fragment {
         ShruthiAdapter shruthiAdapter = new ShruthiAdapter(shruthis, rxBus);
         recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2));
         recyclerView.setAdapter(shruthiAdapter);
+        IronSource.init(getActivity(), "ba03052d", IronSource.AD_UNIT.BANNER);
 
-        MobileAds.initialize(getContext(), getString(R.string.admob_app_id));
+        IronSourceBannerLayout banner = IronSource.createBanner(getActivity(), ISBannerSize.BANNER);
+        FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT,
+                FrameLayout.LayoutParams.WRAP_CONTENT);
+        adView.addView(banner, 0, layoutParams);
 
-        AdRequest adRequest = new AdRequest.Builder().build();
-        adView.loadAd(adRequest);
+        banner.setBannerListener(new BannerListener() {
+            @Override
+            public void onBannerAdLoaded() {
+                // Called after a banner ad has been successfully loaded
+            }
+
+            @Override
+            public void onBannerAdLoadFailed(IronSourceError error) {
+                // Called after a banner has attempted to load an ad but failed.
+                Objects.requireNonNull(getActivity()).runOnUiThread(() -> adView.removeAllViews());
+            }
+
+            @Override
+            public void onBannerAdClicked() {
+                // Called after a banner has been clicked.
+            }
+
+            @Override
+            public void onBannerAdScreenPresented() {
+                // Called when a banner is about to present a full screen content.
+            }
+
+            @Override
+            public void onBannerAdScreenDismissed() {
+                // Called after a full screen content has been dismissed
+            }
+
+            @Override
+            public void onBannerAdLeftApplication() {
+                // Called when a user would be taken out of the application context.
+            }
+        });
+
+        IronSource.loadBanner(banner);
 
         rxBus.toObservable()
                 .subscribe(object -> {

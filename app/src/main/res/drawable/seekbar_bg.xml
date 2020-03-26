@@ -24,7 +24,7 @@
             <shape
                 android:shape="line">
                 <stroke
-                    android:color="@color/browser_actions_bg_grey"
+                    android:color="@color/common_google_signin_btn_text_dark"
                     android:width="4dp"/>
             </shape>
         </clip>

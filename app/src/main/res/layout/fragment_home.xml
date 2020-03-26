@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/bg"
-    tools:context=".ui.ListActivity">
+    tools:context=".ui.ui.home.HomeFragment">
 
 
     <androidx.recyclerview.widget.RecyclerView
@@ -43,13 +43,11 @@
             android:src="@drawable/pause" />
     </RelativeLayout>
 
-    <com.google.android.gms.ads.AdView xmlns:ads="http://schemas.android.com/apk/res-auto"
+    <FrameLayout
         android:id="@+id/adView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        ads:adSize="BANNER"
-        ads:adUnitId="@string/banner_list_activity" />
+        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>

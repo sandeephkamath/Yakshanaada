@@ -8,11 +8,7 @@
     <string name="bili_4">ಬಿಳಿ ೪</string>
     <string name="bili_5">ಬಿಳಿ ೫</string>
 
-    <string name="admob_app_id">"ca-app-pub-4879890824365927~4846271458"</string>
 
-    <string name="banner_id_prod">ca-app-pub-4879890824365927/4271556385</string>
-    <string name="banner_id_test">ca-app-pub-3940256099942544/6300978111</string>
-    <string name="banner_list_activity">ca-app-pub-4879890824365927/4177983192</string>
     <string name="title_activity_drawer">DrawerActivity</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
